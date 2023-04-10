@@ -41,3 +41,5 @@ replace (
 	k8s.io/sample-apiserver => k8s.io/sample-apiserver v0.18.12
 
 )
+
+replace github.com/dgrijalva/jwt-go => github.com/golang-jwt/jwt/v4 v4.4.2
