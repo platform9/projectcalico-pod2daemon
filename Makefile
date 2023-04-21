@@ -1,5 +1,5 @@
 PACKAGE_NAME?=github.com/projectcalico/pod2daemon
-GO_BUILD_VER?=v0.49
+GO_BUILD_VER?=v0.72.1
 
 SEMAPHORE_PROJECT_ID?=$(SEMAPHORE_POD2DAEMON_PROJECT_ID)
 
@@ -59,7 +59,7 @@ bin/flexvol-arm64: ARCH=arm64
 bin/flexvol-ppc64le: ARCH=ppc64le
 bin/flexvol-s390x: ARCH=s390x
 bin/flexvol-%: $(SRC_FILES)
-	$(DOCKER_RUN) $(CALICO_BUILD) go build -v -o bin/flexvol-$(ARCH) flexvol/flexvoldriver.go
+	$(DOCKER_RUN) -v $(CURDIR)/../libcalico-go:/go/src/github.com/projectcalico/libcalico-go:rw -v $(CURDIR)/../confd:/go/src/github.com/projectcalico/confd:rw $(CALICO_BUILD) go build -v -o bin/flexvol-$(ARCH) flexvol/flexvoldriver.go
 
 ###############################################################################
 # Building the image
